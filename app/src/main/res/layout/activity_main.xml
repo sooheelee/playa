@@ -56,9 +56,11 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/device_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bluetooth devices"
+            android:text="My bluetooth devices:"
+            android:layout_marginTop="14dp"
             android:textSize="16sp"/>
 
         <ListView
