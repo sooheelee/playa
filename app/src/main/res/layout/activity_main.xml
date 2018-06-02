@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,52 +16,52 @@
 
         <Button
             android:id="@+id/book"
-            android:text="book"
-            android:textSize="24sp"
-            android:layout_margin="2dp"
-            android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:layout_weight="1" />
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_light"
+            android:text="book"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/music"
-            android:text="music"
-            android:textSize="24sp"
-            android:layout_margin="2dp"
-            android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
-            android:layout_weight="1" />
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark"
+            android:text="music"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/radio"
-            android:text="radio"
-            android:textSize="24sp"
-            android:layout_margin="2dp"
-            android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:layout_weight="1" />
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_light"
+            android:text="radio"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
         android:layout_margin="2dp"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/device_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="My bluetooth devices:"
             android:layout_marginTop="14dp"
-            android:textSize="16sp"/>
+            android:text="Bluetooth devices"
+            android:textSize="16sp" />
 
         <ListView
             android:id="@+id/bluetooth"
@@ -69,11 +69,94 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <VideoView
+    <RelativeLayout
         android:id="@+id/player"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:background="@color/colorAccent"/>
+        android:layout_margin="2dp"
+        android:background="@android:color/transparent">
+
+        <TextView
+            android:id="@+id/now_playing_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Now playing"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/now_playing_header"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/seekBar2">
+
+            <TextView
+                android:id="@+id/nowPlaying"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Mountain Rabbit . . . by Brie" />
+
+            <TextView
+                android:id="@+id/lengthOFItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/nowPlaying"
+                android:layout_weight="1"
+                android:text="3:33"
+                android:textAlignment="viewEnd" />
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButtonPrevious"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="8dp"
+            android:layout_marginStart="40dp"
+            android:clickable="true"
+            app:backgroundTint="@android:color/holo_orange_light"
+            app:srcCompat="@android:drawable/ic_media_previous" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButtonPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:clickable="true"
+            app:backgroundTint="@android:color/holo_orange_dark"
+            app:srcCompat="@android:drawable/ic_media_pause" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButtonNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:layout_marginEnd="46dp"
+            android:clickable="true"
+            app:backgroundTint="@android:color/holo_orange_light"
+            app:srcCompat="@android:drawable/ic_media_next" />
+
+    </RelativeLayout>
 
 </LinearLayout>

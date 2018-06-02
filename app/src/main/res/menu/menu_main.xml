@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/load_1"
+        android:title="New music" />
+
+    <item
+        android:id="@+id/load_2"
+        android:title="New book" />
+
+    <item
+        android:id="@+id/load_3"
+        android:title="New radio" />
+
+    <item
+        android:id="@+id/load_4"
+        android:title="Add new media" />
+</menu>
