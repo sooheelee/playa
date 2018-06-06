@@ -21,7 +21,7 @@
             android:layout_margin="2dp"
             android:layout_weight="1"
             android:background="@android:color/holo_orange_light"
-            android:text="book"
+            android:text="audio book"
             android:textColor="@android:color/white"
             android:textSize="24sp" />
 
@@ -43,7 +43,7 @@
             android:layout_margin="2dp"
             android:layout_weight="1"
             android:background="@android:color/holo_orange_light"
-            android:text="radio"
+            android:text="live radio"
             android:textColor="@android:color/white"
             android:textSize="24sp" />
     </LinearLayout>
@@ -73,50 +73,64 @@
         android:id="@+id/player"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
         android:layout_margin="2dp"
+        android:layout_weight="2"
         android:background="@android:color/transparent">
 
-        <TextView
-            android:id="@+id/now_playing_header"
+        <LinearLayout
+            android:id="@+id/now_playing_field"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="Now playing"
-            android:textSize="16sp" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/now_playing_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Now playing: "
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/now_playing_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fadingEdge="horizontal"
+                android:marqueeRepeatLimit="1"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Rabbit Songs" />
+
+        </LinearLayout>
 
         <SeekBar
             android:id="@+id/seekBar2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/now_playing_header"
+            android:layout_below="@id/now_playing_field"
             android:visibility="visible" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/seekBar2">
 
             <TextView
-                android:id="@+id/nowPlaying"
+                android:id="@+id/now_playing_detail1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
-                android:ellipsize="marquee"
+                android:ellipsize="end"
                 android:fadingEdge="horizontal"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="Mountain Rabbit . . . by Brie" />
+                android:text="Mountain Rabbit by Brie" />
 
             <TextView
-                android:id="@+id/lengthOFItem"
+                android:id="@+id/now_playing_detail2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/nowPlaying"
+                android:layout_toRightOf="@id/now_playing_detail1"
                 android:layout_weight="1"
                 android:text="3:33"
                 android:textAlignment="viewEnd" />

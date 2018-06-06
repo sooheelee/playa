@@ -29,4 +29,6 @@ public class ItemInfo {
     public String getByLine() { return mByLine; }
 
     public String getLength() { return mLength; }
+
+    public String getTitleAndArtist() { return mTitle + " ... " + mByLine; }
 }

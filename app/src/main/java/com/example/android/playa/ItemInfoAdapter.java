@@ -46,7 +46,7 @@ public class ItemInfoAdapter extends ArrayAdapter<ItemInfo> {
         TextView lengthTextView = (TextView) listItemView.findViewById(R.id.item_length);
         lengthTextView.setText(currentWord.getLength());
 
-        TextView nowPlayingTextView = (TextView) listItemView.findViewById(R.id.nowPlaying);
+        TextView nowPlayingTextView = (TextView) listItemView.findViewById(R.id.now_playing_detail1);
 
 //        ImageView iconView = listItemView.findViewById(R.id.word_icon);
 //        iconView.setImageResource(currentWord.getImageResourceID());

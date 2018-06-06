@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,14 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String ITEM_SELECTED_INFO = "";
+    public static final String ITEM_SELECTED_DETAIL_1 = "";
+    public static final String ITEM_SELECTED_DETAIL_2 = "";
+
+    public static String itemSelectedInfo = ITEM_SELECTED_INFO;
+    public static String itemSelectedDetail1 = ITEM_SELECTED_DETAIL_1;
+    public static String itemSelectedDetail2 = ITEM_SELECTED_DETAIL_2;
+
     /**
      * This displays saved values when display orientation is switched.
      *
@@ -31,12 +40,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
-//            quantity = savedInstanceState.getInt(QUANTITY_TEXT_VIEW);
-//            displayQuantity(quantity);
-//            calculateTotalPrice();
+            displaySelected();
         } else {
             setContentView(R.layout.activity_main);
         }
+
+        // Remember to remove
+        Log.i("onRestoreMain",   itemSelectedInfo + " " + itemSelectedDetail1  + " " + itemSelectedDetail2);
     }
 
     /**
@@ -46,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
-//        savedInstanceState.putInt(QUANTITY_TEXT_VIEW, quantity);
+        savedInstanceState.putString(ITEM_SELECTED_INFO, itemSelectedInfo);
+        savedInstanceState.putString(ITEM_SELECTED_DETAIL_1, itemSelectedDetail1);
+        savedInstanceState.putString(ITEM_SELECTED_DETAIL_2, itemSelectedDetail2);
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -54,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        scrollNowPlaying();
+        displaySelected();
 
         Button book = findViewById(R.id.book);
         book.setOnClickListener(new View.OnClickListener() {
@@ -136,11 +148,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void scrollNowPlaying() {
-        TextView scrollingText = findViewById(R.id.nowPlaying);
-        scrollingText.setSelected(true);
-        scrollingText.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-        scrollingText.setSingleLine(true);
+    public void displaySelected() {
+        TextView scrollingInfo = findViewById(R.id.now_playing_info);
+        scrollingInfo.setText(itemSelectedInfo);
+        scrollingInfo.setSelected(true);
+        scrollingInfo.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        scrollingInfo.setSingleLine(true);
+
+        TextView scrollingDetail = findViewById(R.id.now_playing_detail1);
+        scrollingDetail.setText(itemSelectedDetail1);
+        scrollingDetail.setSelected(true);
+        scrollingDetail.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        scrollingDetail.setSingleLine(true);
+
+        TextView selectedItemLength = findViewById(R.id.now_playing_detail2);
+        selectedItemLength.setText(itemSelectedDetail2);
     }
 
     /**
