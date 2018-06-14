@@ -62,12 +62,13 @@ public class BookActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setSelected(true);
 
+                MainActivity.mediaTag = 1;
                 MainActivity.itemSelectedInfo= wordsArrayList.get(position-1).getByLine();
                 MainActivity.itemSelectedDetail1 = wordsArrayList.get(position-1).getTitle();
                 MainActivity.itemSelectedDetail2 = wordsArrayList.get(position-1).getLength();
 
                 // Remember to remove
-                Log.i("BookActivity onItemClick",   MainActivity.itemSelectedInfo + " " + MainActivity.itemSelectedDetail1  + " " + MainActivity.itemSelectedDetail2);
+                Log.i("BookActivity",   MainActivity.itemSelectedInfo + " " + MainActivity.itemSelectedDetail1  + " " + MainActivity.itemSelectedDetail2);
 
 //                startActivity(new Intent(BookActivity.this, MainActivity.class));
             }

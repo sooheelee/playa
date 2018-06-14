@@ -2,6 +2,7 @@ package com.example.android.playa;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,8 +16,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static com.example.android.playa.MainActivity.MEDIA_TAG;
-
 public class MusicActivity extends AppCompatActivity {
 
     private View currentSelectedView;
@@ -24,7 +23,7 @@ public class MusicActivity extends AppCompatActivity {
     public static final int lastSelectedViewIndex = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.media_list);
 
@@ -83,6 +82,20 @@ public class MusicActivity extends AppCompatActivity {
                 MainActivity.itemSelectedInfo = getString(R.string.song_info);
                 MainActivity.itemSelectedDetail1 = wordsArrayList.get(position-1).getTitleAndArtist();
                 MainActivity.itemSelectedDetail2 = wordsArrayList.get(position-1).getLength();
+
+//                SharedPreferences sharedPref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPref.edit();
+//
+//                //save permanent prefs here
+//                editor.putInt(getString(R.string.saved_media_tag), mediaTag);
+//                editor.putString(getString(R.string.saved_item_selected_info), itemSelectedInfo);
+//                editor.putString(getString(R.string.saved_item_selected_detail_1), itemSelectedDetail1);
+//                editor.putString(getString(R.string.saved_item_selected_detail_2), itemSelectedDetail2);
+//                editor.putString(getString(R.string.saved_book_selection), rememberBookSelection);
+//                editor.putString(getString(R.string.saved_music_selection), rememberMusicSelection);
+//                editor.putString(getString(R.string.saved_radio_selection), rememberRadioSelection);
+//                editor.apply();
+//                editor.commit();
 
                 // Remember to remove
                 Log.i("MusicActivityClick",   MainActivity.itemSelectedInfo + " " + MainActivity.itemSelectedDetail1  + " " + MainActivity.itemSelectedDetail2);

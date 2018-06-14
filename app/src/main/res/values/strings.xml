@@ -7,7 +7,7 @@
     <string name="song_04_title">Atom Bomb</string>
     <string name="song_05_title">Roses Fade (Mojo Mix)</string>
     <string name="song_06_title">Setting Sun (Instrumental)</string>
-    <string name="song_07_title">Pearl's Girl</string>
+    <string name="song_07_title">Pearl\'s Girl</string>
     <string name="song_08_title">Out of My Mind</string>
     <string name="song_09_title">Da Funk</string>
     <string name="song_10_title">Dead Man Walking</string>
@@ -94,11 +94,19 @@
     <string name="book_23_length">24:02</string>
     <string name="book_24_length">00:20</string>
     <string name="radio_info">Boston Massachusetts ... Public Radio</string>
-    <string name="radio_01_title">WBUR Boston's NPR New Station</string>
-    <string name="radio_02_title">WGBH Boston's Local NPR</string>
+    <string name="radio_01_title">WBUR Boston\'s NPR New Station</string>
+    <string name="radio_02_title">WGBH Boston\'s Local NPR</string>
     <string name="radio_01_artist">College - Boston University</string>
     <string name="radio_02_artist">Public Radio</string>
     <string name="radio_01_length">90.9</string>
     <string name="radio_02_length">89.7</string>
     <string name="headphones">🎧</string>
+    <string name="long_press">Long-press to open a media list</string>
+    <string name="saved_media_tag">MEDIA_TAG</string>
+    <string name="saved_item_selected_info">ITEM_SELECTED_INFO</string>
+    <string name="saved_item_selected_detail_1">ITEM_SELECTED_DETAIL_1</string>
+    <string name="saved_item_selected_detail_2">ITEM_SELECTED_DETAIL_2</string>
+    <string name="saved_book_selection">REMEMBER_BOOK_SELECTION</string>
+    <string name="saved_music_selection">REMEMBER_MUSIC_SELECTION</string>
+    <string name="saved_radio_selection">REMEMBER_RADIO_SELECTION</string>
 </resources>

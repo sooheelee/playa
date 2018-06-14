@@ -41,12 +41,13 @@ public class RadioActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setSelected(true);
 
+                MainActivity.mediaTag = 3;
                 MainActivity.itemSelectedInfo= wordsArrayList.get(position-1).getTitle();
                 MainActivity.itemSelectedDetail1 = wordsArrayList.get(position-1).getByLine();
                 MainActivity.itemSelectedDetail2 = wordsArrayList.get(position-1).getLength();
 
                 // Remember to remove
-                Log.i("RadioActivity onItemClick",   MainActivity.itemSelectedInfo + " " + MainActivity.itemSelectedDetail1  + " " + MainActivity.itemSelectedDetail2);
+                Log.i("RadioActivity",   MainActivity.itemSelectedInfo + " " + MainActivity.itemSelectedDetail1  + " " + MainActivity.itemSelectedDetail2);
 //                startActivity(new Intent(RadioActivity.this, MainActivity.class));
             }
         });
