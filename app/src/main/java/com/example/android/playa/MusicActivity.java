@@ -79,7 +79,7 @@ public class MusicActivity extends AppCompatActivity {
 
                 Log.i("viewthatisselected", view.toString());
 
-                MEDIA_TAG = "2";
+                MainActivity.mediaTag = 2;
                 MainActivity.itemSelectedInfo = getString(R.string.song_info);
                 MainActivity.itemSelectedDetail1 = wordsArrayList.get(position-1).getTitleAndArtist();
                 MainActivity.itemSelectedDetail2 = wordsArrayList.get(position-1).getLength();

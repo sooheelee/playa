@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     EditText ed1, ed2, ed3;
     public static final String MyPREFERENCES = "MyPrefs";
 
-    protected int mediaTag;
+    public static int mediaTag;
 
     public static final String MEDIA_TAG = "0";
     public static final String ITEM_SELECTED_INFO = "";
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This saves values.
+     * This saves values across the application's lifetime (e.g. if it hasn't been closed)
      *
      * @param savedInstanceState
      */
@@ -78,6 +78,21 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putString(ITEM_SELECTED_DETAIL_2, itemSelectedDetail2);
 //        savedInstanceState.putInt(MEDIA_TAG, mediaTag);
         super.onSaveInstanceState(savedInstanceState);
+    }
+
+    /**
+     * This saves values persistently (fires when app is closed)
+     *
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        //save permanent prefs here
+    }
+
+    private void saveStateOrPrefs(Bundle savedInstanceState) {
+
     }
 
     @Override
