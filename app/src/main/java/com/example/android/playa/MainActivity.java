@@ -25,19 +25,19 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String MEDIA_TAG = "0";
-    public static String ITEM_SELECTED_INFO = "";
-    public static String ITEM_SELECTED_DETAIL_1 = "";
-    public static String ITEM_SELECTED_DETAIL_2 = "";
-    public static String BOOK_SELECTION = "";
-    public static String BOOK_SELECTION_DETAIL_1 = "";
-    public static String BOOK_SELECTION_DETAIL_2 = "";
-    public static String MUSIC_SELECTION = "";
-    public static String MUSIC_SELECTION_DETAIL_1 = "";
-    public static String MUSIC_SELECTION_DETAIL_2 = "";
-    public static String RADIO_SELECTION = "";
-    public static String RADIO_SELECTION_DETAIL_1 = "";
-    public static String RADIO_SELECTION_DETAIL_2 = "";
+    public static final String MEDIA_TAG = "0";
+    public static final String ITEM_SELECTED_INFO = "";
+    public static final String ITEM_SELECTED_DETAIL_1 = "";
+    public static final String ITEM_SELECTED_DETAIL_2 = "";
+    public static final String BOOK_SELECTION = "";
+    public static final String BOOK_SELECTION_DETAIL_1 = "";
+    public static final String BOOK_SELECTION_DETAIL_2 = "";
+    public static final String MUSIC_SELECTION = "";
+    public static final String MUSIC_SELECTION_DETAIL_1 = "";
+    public static final String MUSIC_SELECTION_DETAIL_2 = "";
+    public static final String RADIO_SELECTION = "";
+    public static final String RADIO_SELECTION_DETAIL_1 = "";
+    public static final String RADIO_SELECTION_DETAIL_2 = "";
 
     public static int mediaTag;
     public static String itemSelectedInfo = ITEM_SELECTED_INFO;
@@ -136,9 +136,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences("MyPREFERENCES", MODE_PRIVATE);
 
         mediaTag = sharedPref.getInt(getString(R.string.saved_media_tag), 0);
-//        itemSelectedInfo = sharedPref.getString(getString(R.string.saved_item_selected_info), "");
-//        itemSelectedDetail1 = sharedPref.getString(getString(R.string.saved_item_selected_detail_1), "");
-//        itemSelectedDetail2 = sharedPref.getString(getString(R.string.saved_item_selected_detail_2), "");
+        itemSelectedInfo = sharedPref.getString(getString(R.string.saved_item_selected_info), "");
+        itemSelectedDetail1 = sharedPref.getString(getString(R.string.saved_item_selected_detail_1), "");
+        itemSelectedDetail2 = sharedPref.getString(getString(R.string.saved_item_selected_detail_2), "");
         BookSelection = sharedPref.getString(getString(R.string.saved_book_selection), "");
         MusicSelection = sharedPref.getString(getString(R.string.saved_music_selection), "");
         RadioSelection = sharedPref.getString(getString(R.string.saved_radio_selection), "");
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadSavedPrefs();
+//        loadSavedPrefs();
 
         colorSelectedMedia();
         displaySelected();
