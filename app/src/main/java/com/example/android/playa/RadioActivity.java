@@ -40,15 +40,10 @@ public class RadioActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setSelected(true);
-
                 MainActivity.mediaTag = 3;
                 MainActivity.RadioSelection= wordsArrayList.get(position-1).getTitle();
                 MainActivity.RadioSelectionDetail1 = wordsArrayList.get(position-1).getByLine();
                 MainActivity.RadioSelectionDetail2 = wordsArrayList.get(position-1).getLength();
-
-                // Remember to remove
-                Log.i("RadioActivity",   MainActivity.RadioSelection + " " + MainActivity.RadioSelectionDetail1  + " " + MainActivity.RadioSelectionDetail2);
-//                startActivity(new Intent(RadioActivity.this, MainActivity.class));
             }
         });
     }

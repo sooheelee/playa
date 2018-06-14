@@ -1,23 +1,24 @@
 package com.example.android.playa;
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,33 +26,19 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String MEDIA_TAG = "0";
-    public static final String ITEM_SELECTED_INFO = "";
-    public static final String ITEM_SELECTED_DETAIL_1 = "";
-    public static final String ITEM_SELECTED_DETAIL_2 = "";
-    public static final String BOOK_SELECTION = "";
-    public static final String BOOK_SELECTION_DETAIL_1 = "";
-    public static final String BOOK_SELECTION_DETAIL_2 = "";
-    public static final String MUSIC_SELECTION = "";
-    public static final String MUSIC_SELECTION_DETAIL_1 = "";
-    public static final String MUSIC_SELECTION_DETAIL_2 = "";
-    public static final String RADIO_SELECTION = "";
-    public static final String RADIO_SELECTION_DETAIL_1 = "";
-    public static final String RADIO_SELECTION_DETAIL_2 = "";
-
     public static int mediaTag;
-    public static String itemSelectedInfo = ITEM_SELECTED_INFO;
-    public static String itemSelectedDetail1 = ITEM_SELECTED_DETAIL_1;
-    public static String itemSelectedDetail2 = ITEM_SELECTED_DETAIL_2;
-    public static String BookSelection = BOOK_SELECTION;
-    public static String MusicSelection = MUSIC_SELECTION;
-    public static String RadioSelection = RADIO_SELECTION;
-    public static String BookSelectionDetail1 = BOOK_SELECTION_DETAIL_1;
-    public static String MusicSelectionDetail1 = MUSIC_SELECTION_DETAIL_1;
-    public static String RadioSelectionDetail1 = RADIO_SELECTION_DETAIL_1;
-    public static String BookSelectionDetail2 = BOOK_SELECTION_DETAIL_2;
-    public static String MusicSelectionDetail2 = MUSIC_SELECTION_DETAIL_2;
-    public static String RadioSelectionDetail2 = RADIO_SELECTION_DETAIL_2;
+    public static String itemSelectedInfo = "";
+    public static String itemSelectedDetail1 = "";
+    public static String itemSelectedDetail2 = "";
+    public static String BookSelection = "";
+    public static String MusicSelection = "";
+    public static String RadioSelection = "";
+    public static String BookSelectionDetail1 = "";
+    public static String MusicSelectionDetail1 = "";
+    public static String RadioSelectionDetail1 = "";
+    public static String BookSelectionDetail2 = "";
+    public static String MusicSelectionDetail2 = "";
+    public static String RadioSelectionDetail2 = "";
 
     /**
      * This displays saved values when display orientation is switched.
@@ -67,9 +54,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             setContentView(R.layout.activity_main);
         }
-
-        // Remember to remove
-        Log.i("onRestoreMain", itemSelectedInfo + " " + itemSelectedDetail1 + " " + itemSelectedDetail2);
     }
 
     /**
@@ -79,31 +63,24 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
-//        savedInstanceState.putString(ITEM_SELECTED_INFO, itemSelectedInfo);
-//        savedInstanceState.putString(ITEM_SELECTED_DETAIL_1, itemSelectedDetail1);
-//        savedInstanceState.putString(ITEM_SELECTED_DETAIL_2, itemSelectedDetail2);
-//        savedInstanceState.putInt(MEDIA_TAG, mediaTag);
         saveStateOrPrefs();
         super.onSaveInstanceState(savedInstanceState);
     }
 
     /**
      * This saves values persistently (fires when app is closed)
-     *
      */
     @Override
     // Try this then onPause
     protected void onPause() {
         super.onPause();
         saveStateOrPrefs();
-        Log.i("onpause", "Pause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         saveStateOrPrefs();
-        Log.i("onstop", "Stop");
     }
 
     private void saveStateOrPrefs() {
@@ -111,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = this.getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        //save permanent prefs here
         editor.putInt(getString(R.string.saved_media_tag), mediaTag);
         editor.putString(getString(R.string.saved_item_selected_info), itemSelectedInfo);
         editor.putString(getString(R.string.saved_item_selected_detail_1), itemSelectedDetail1);
@@ -127,60 +103,30 @@ public class MainActivity extends AppCompatActivity {
         editor.putString(getString(R.string.saved_radio_selection_detail_2), RadioSelectionDetail2);
         editor.apply();
         editor.commit();
-
-        Log.i("saveStateOrPrefs", getString(R.string.saved_item_selected_info) + " " + itemSelectedInfo);
     }
 
-    private void loadSavedPrefs() {
-
-        SharedPreferences sharedPref = getSharedPreferences("MyPREFERENCES", MODE_PRIVATE);
-
-        mediaTag = sharedPref.getInt(getString(R.string.saved_media_tag), 0);
-        itemSelectedInfo = sharedPref.getString(getString(R.string.saved_item_selected_info), "");
-        itemSelectedDetail1 = sharedPref.getString(getString(R.string.saved_item_selected_detail_1), "");
-        itemSelectedDetail2 = sharedPref.getString(getString(R.string.saved_item_selected_detail_2), "");
-        BookSelection = sharedPref.getString(getString(R.string.saved_book_selection), "");
-        MusicSelection = sharedPref.getString(getString(R.string.saved_music_selection), "");
-        RadioSelection = sharedPref.getString(getString(R.string.saved_radio_selection), "");
-        BookSelectionDetail1 = sharedPref.getString(getString(R.string.saved_book_selection_detail_1), "");
-        MusicSelectionDetail1 = sharedPref.getString(getString(R.string.saved_music_selection_detail_1), "");
-        RadioSelectionDetail1 = sharedPref.getString(getString(R.string.saved_radio_selection_detail_1), "");
-        BookSelectionDetail2 = sharedPref.getString(getString(R.string.saved_book_selection_detail_2), "");
-        MusicSelectionDetail2 = sharedPref.getString(getString(R.string.saved_music_selection_detail_2), "");
-        RadioSelectionDetail2 = sharedPref.getString(getString(R.string.saved_radio_selection_detail_2), "");
-
-        Log.i("loadSavedPrefs1", Integer.toString(mediaTag));
-
-//        if (mediaTag == 0) {
-//            setContentView(R.layout.activity_main);
-//        }
-//        if (mediaTag == 1) {
-//            itemSelectedInfo = BookSelection;
-//            itemSelectedDetail1 = BookSelectionDetail1;
-//            itemSelectedDetail2 = BookSelectionDetail2;
-//        }
-//        if (mediaTag == 2) {
-//            itemSelectedInfo = MusicSelection;
-//            itemSelectedDetail1 = MusicSelectionDetail1;
-//            itemSelectedDetail2 = MusicSelectionDetail2;
-//        }
-//        if (mediaTag == 3) {
-//            itemSelectedInfo = RadioSelection;
-//            itemSelectedDetail1 = RadioSelectionDetail1;
-//            itemSelectedDetail2 = RadioSelectionDetail2;
-//        }
-
-
-        Log.i("loadSavedPrefs2", itemSelectedInfo + " " + itemSelectedDetail1 + " " + itemSelectedDetail2);
-    }
+//    private void loadSavedPrefs() {
+//
+//        SharedPreferences sharedPref = getSharedPreferences("MyPREFERENCES", MODE_PRIVATE);
+//
+//        mediaTag = sharedPref.getInt(getString(R.string.saved_media_tag), 0);
+//        itemSelectedInfo = sharedPref.getString(getString(R.string.saved_item_selected_info), "");
+//        itemSelectedDetail1 = sharedPref.getString(getString(R.string.saved_item_selected_detail_1), "");
+//        itemSelectedDetail2 = sharedPref.getString(getString(R.string.saved_item_selected_detail_2), "");
+//        BookSelection = sharedPref.getString(getString(R.string.saved_book_selection), "");
+//        MusicSelection = sharedPref.getString(getString(R.string.saved_music_selection), "");
+//        RadioSelection = sharedPref.getString(getString(R.string.saved_radio_selection), "");
+//        BookSelectionDetail1 = sharedPref.getString(getString(R.string.saved_book_selection_detail_1), "");
+//        MusicSelectionDetail1 = sharedPref.getString(getString(R.string.saved_music_selection_detail_1), "");
+//        RadioSelectionDetail1 = sharedPref.getString(getString(R.string.saved_radio_selection_detail_1), "");
+//        BookSelectionDetail2 = sharedPref.getString(getString(R.string.saved_book_selection_detail_2), "");
+//        MusicSelectionDetail2 = sharedPref.getString(getString(R.string.saved_music_selection_detail_2), "");
+//        RadioSelectionDetail2 = sharedPref.getString(getString(R.string.saved_radio_selection_detail_2), "");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        loadSavedPrefs();
-
         colorSelectedMedia();
         displaySelected();
 
@@ -251,10 +197,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ListView bluetooth = findViewById(R.id.bluetooth);
+        final ListView bluetooth = findViewById(R.id.bluetooth);
         TextView deviceList = findViewById(R.id.device_list);
-
-
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
@@ -271,20 +215,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
-        List<String> listOfBluetoothDevices = new ArrayList<String>();
+        List<String> listOfBluetoothDevices = new ArrayList<>();
         for (BluetoothDevice isBluetoothDevice : pairedDevices) {
             String deviceName = isBluetoothDevice.getName();
             String deviceHardwareAddress = isBluetoothDevice.getAddress();
             String deviceNameAndAddress = deviceName + " " + deviceHardwareAddress;
             listOfBluetoothDevices.add(deviceNameAndAddress);
         }
+
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1,
                 listOfBluetoothDevices
         );
         bluetooth.setAdapter(arrayAdapter);
-        onPausePlayButtonClick();
+//        bluetooth.setSelector(R.color.colorFuchsia);
 
+        bluetooth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                view.setSelected(true);
+//                Toast.makeText(getApplicationContext(), R.string.headphones, Toast.LENGTH_SHORT).show();
+                toggleSelection(view);
+            }
+        });
+
+        onPausePlayButtonClick();
     }
 
     public void onPausePlayButtonClick() {
@@ -365,6 +320,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+//    public boolean doPreferencesExist() {
+//        SharedPreferences sharedPref = getSharedPreferences("MyPREFERENCES", MODE_PRIVATE);
+//        if (sharedPref.contains("ITEM_SELECTED_INFO")) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
+
+    private View lastSelectedItem;
+    private void toggleSelection(View view) {
+        if (lastSelectedItem != null) {
+            lastSelectedItem.setBackgroundColor(Color.TRANSPARENT);
+        }
+        view.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+        lastSelectedItem = view;
+    }
+
     /**
      * Creates menu.
      *
@@ -388,6 +361,3 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 }
-
-
-

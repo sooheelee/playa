@@ -61,20 +61,10 @@ public class BookActivity extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setSelected(true);
-
                 MainActivity.mediaTag = 1;
                 MainActivity.BookSelection= wordsArrayList.get(position-1).getByLine();
                 MainActivity.BookSelectionDetail1 = wordsArrayList.get(position-1).getTitle();
                 MainActivity.BookSelectionDetail2 = wordsArrayList.get(position-1).getLength();
-
-                MainActivity.itemSelectedInfo= wordsArrayList.get(position-1).getByLine();
-                MainActivity.itemSelectedDetail1 = wordsArrayList.get(position-1).getTitle();
-                MainActivity.itemSelectedDetail2 = wordsArrayList.get(position-1).getLength();
-
-                // Remember to remove
-                Log.i("BookActivity",   MainActivity.BookSelection + " " + MainActivity.BookSelectionDetail1  + " " + MainActivity.BookSelectionDetail2);
-
-//                startActivity(new Intent(BookActivity.this, MainActivity.class));
             }
         });
     }
