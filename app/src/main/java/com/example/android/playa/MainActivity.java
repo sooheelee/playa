@@ -29,17 +29,29 @@ public class MainActivity extends AppCompatActivity {
     public static String ITEM_SELECTED_INFO = "";
     public static String ITEM_SELECTED_DETAIL_1 = "";
     public static String ITEM_SELECTED_DETAIL_2 = "";
-    public static String REMEMBER_BOOK_SELECTION = "";
-    public static String REMEMBER_MUSIC_SELECTION = "";
-    public static String REMEMBER_RADIO_SELECTION = "";
+    public static String BOOK_SELECTION = "";
+    public static String BOOK_SELECTION_DETAIL_1 = "";
+    public static String BOOK_SELECTION_DETAIL_2 = "";
+    public static String MUSIC_SELECTION = "";
+    public static String MUSIC_SELECTION_DETAIL_1 = "";
+    public static String MUSIC_SELECTION_DETAIL_2 = "";
+    public static String RADIO_SELECTION = "";
+    public static String RADIO_SELECTION_DETAIL_1 = "";
+    public static String RADIO_SELECTION_DETAIL_2 = "";
 
     public static int mediaTag;
     public static String itemSelectedInfo = ITEM_SELECTED_INFO;
     public static String itemSelectedDetail1 = ITEM_SELECTED_DETAIL_1;
     public static String itemSelectedDetail2 = ITEM_SELECTED_DETAIL_2;
-    public static String rememberBookSelection = REMEMBER_BOOK_SELECTION;
-    public static String rememberMusicSelection = REMEMBER_MUSIC_SELECTION;
-    public static String rememberRadioSelection = REMEMBER_RADIO_SELECTION;
+    public static String BookSelection = BOOK_SELECTION;
+    public static String MusicSelection = MUSIC_SELECTION;
+    public static String RadioSelection = RADIO_SELECTION;
+    public static String BookSelectionDetail1 = BOOK_SELECTION_DETAIL_1;
+    public static String MusicSelectionDetail1 = MUSIC_SELECTION_DETAIL_1;
+    public static String RadioSelectionDetail1 = RADIO_SELECTION_DETAIL_1;
+    public static String BookSelectionDetail2 = BOOK_SELECTION_DETAIL_2;
+    public static String MusicSelectionDetail2 = MUSIC_SELECTION_DETAIL_2;
+    public static String RadioSelectionDetail2 = RADIO_SELECTION_DETAIL_2;
 
     /**
      * This displays saved values when display orientation is switched.
@@ -104,9 +116,15 @@ public class MainActivity extends AppCompatActivity {
         editor.putString(getString(R.string.saved_item_selected_info), itemSelectedInfo);
         editor.putString(getString(R.string.saved_item_selected_detail_1), itemSelectedDetail1);
         editor.putString(getString(R.string.saved_item_selected_detail_2), itemSelectedDetail2);
-        editor.putString(getString(R.string.saved_book_selection), rememberBookSelection);
-        editor.putString(getString(R.string.saved_music_selection), rememberMusicSelection);
-        editor.putString(getString(R.string.saved_radio_selection), rememberRadioSelection);
+        editor.putString(getString(R.string.saved_book_selection), BookSelection);
+        editor.putString(getString(R.string.saved_music_selection), MusicSelection);
+        editor.putString(getString(R.string.saved_radio_selection), RadioSelection);
+        editor.putString(getString(R.string.saved_book_selection_detail_1), BookSelectionDetail1);
+        editor.putString(getString(R.string.saved_music_selection_detail_1), MusicSelectionDetail1);
+        editor.putString(getString(R.string.saved_radio_selection_detail_1), RadioSelectionDetail1);
+        editor.putString(getString(R.string.saved_book_selection_detail_2), BookSelectionDetail2);
+        editor.putString(getString(R.string.saved_music_selection_detail_2), MusicSelectionDetail2);
+        editor.putString(getString(R.string.saved_radio_selection_detail_2), RadioSelectionDetail2);
         editor.apply();
         editor.commit();
 
@@ -114,22 +132,54 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadSavedPrefs() {
-        SharedPreferences sharedPref = this.getSharedPreferences("MyPREFERENCES", MODE_PRIVATE);
 
-        // The second is returned if the key isn't present
-        int mediaTag = sharedPref.getInt(getString(R.string.saved_media_tag), Integer.getInteger(MEDIA_TAG));
-        itemSelectedInfo = sharedPref.getString(getString(R.string.saved_item_selected_info), ITEM_SELECTED_INFO);
-        itemSelectedDetail1 = sharedPref.getString(getString(R.string.saved_item_selected_detail_1), ITEM_SELECTED_DETAIL_1);
-        itemSelectedDetail2 = sharedPref.getString(getString(R.string.saved_item_selected_detail_2), ITEM_SELECTED_DETAIL_2);
-        rememberBookSelection = sharedPref.getString(getString(R.string.saved_book_selection), REMEMBER_BOOK_SELECTION);
-        rememberMusicSelection = sharedPref.getString(getString(R.string.saved_music_selection), REMEMBER_MUSIC_SELECTION);
-        rememberRadioSelection = sharedPref.getString(getString(R.string.saved_radio_selection), REMEMBER_RADIO_SELECTION);
+        SharedPreferences sharedPref = getSharedPreferences("MyPREFERENCES", MODE_PRIVATE);
+
+        mediaTag = sharedPref.getInt(getString(R.string.saved_media_tag), 0);
+//        itemSelectedInfo = sharedPref.getString(getString(R.string.saved_item_selected_info), "");
+//        itemSelectedDetail1 = sharedPref.getString(getString(R.string.saved_item_selected_detail_1), "");
+//        itemSelectedDetail2 = sharedPref.getString(getString(R.string.saved_item_selected_detail_2), "");
+        BookSelection = sharedPref.getString(getString(R.string.saved_book_selection), "");
+        MusicSelection = sharedPref.getString(getString(R.string.saved_music_selection), "");
+        RadioSelection = sharedPref.getString(getString(R.string.saved_radio_selection), "");
+        BookSelectionDetail1 = sharedPref.getString(getString(R.string.saved_book_selection_detail_1), "");
+        MusicSelectionDetail1 = sharedPref.getString(getString(R.string.saved_music_selection_detail_1), "");
+        RadioSelectionDetail1 = sharedPref.getString(getString(R.string.saved_radio_selection_detail_1), "");
+        BookSelectionDetail2 = sharedPref.getString(getString(R.string.saved_book_selection_detail_2), "");
+        MusicSelectionDetail2 = sharedPref.getString(getString(R.string.saved_music_selection_detail_2), "");
+        RadioSelectionDetail2 = sharedPref.getString(getString(R.string.saved_radio_selection_detail_2), "");
+
+        Log.i("loadSavedPrefs1", Integer.toString(mediaTag));
+
+//        if (mediaTag == 0) {
+//            setContentView(R.layout.activity_main);
+//        }
+//        if (mediaTag == 1) {
+//            itemSelectedInfo = BookSelection;
+//            itemSelectedDetail1 = BookSelectionDetail1;
+//            itemSelectedDetail2 = BookSelectionDetail2;
+//        }
+//        if (mediaTag == 2) {
+//            itemSelectedInfo = MusicSelection;
+//            itemSelectedDetail1 = MusicSelectionDetail1;
+//            itemSelectedDetail2 = MusicSelectionDetail2;
+//        }
+//        if (mediaTag == 3) {
+//            itemSelectedInfo = RadioSelection;
+//            itemSelectedDetail1 = RadioSelectionDetail1;
+//            itemSelectedDetail2 = RadioSelectionDetail2;
+//        }
+
+
+        Log.i("loadSavedPrefs2", itemSelectedInfo + " " + itemSelectedDetail1 + " " + itemSelectedDetail2);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        loadSavedPrefs();
 
         colorSelectedMedia();
         displaySelected();
@@ -143,9 +193,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mediaTag = 1;
                 colorSelectedMedia();
-//                itemSelectedInfo = rememberBookSelection;
-//                itemSelectedDetail1 = rememberBookSelection;
-//                itemSelectedDetail2 = rememberBookSelection;
+                itemSelectedInfo = BookSelection;
+                itemSelectedDetail1 = BookSelectionDetail1;
+                itemSelectedDetail2 = BookSelectionDetail2;
                 displaySelected();
             }
         });
@@ -155,9 +205,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mediaTag = 2;
                 colorSelectedMedia();
-//                itemSelectedInfo = rememberMusicSelection;
-//                itemSelectedDetail1 = rememberMusicSelection;
-//                itemSelectedDetail2 = rememberMusicSelection;
+                itemSelectedInfo = MusicSelection;
+                itemSelectedDetail1 = MusicSelectionDetail1;
+                itemSelectedDetail2 = MusicSelectionDetail2;
                 displaySelected();
             }
         });
@@ -167,9 +217,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mediaTag = 3;
                 colorSelectedMedia();
-//                itemSelectedInfo = rememberRadioSelection;
-//                itemSelectedDetail1 = rememberRadioSelection;
-//                itemSelectedDetail2 = rememberRadioSelection;
+                itemSelectedInfo = RadioSelection;
+                itemSelectedDetail1 = RadioSelectionDetail1;
+                itemSelectedDetail2 = RadioSelectionDetail2;
                 displaySelected();
             }
         });
@@ -288,17 +338,30 @@ public class MainActivity extends AppCompatActivity {
             book.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
             music.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
             radio.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+            itemSelectedInfo = BookSelection;
+            itemSelectedDetail1 = BookSelectionDetail1;
+            itemSelectedDetail2 = BookSelectionDetail2;
+            displaySelected();
         }
+
         if (mediaTag == 2) {
             music.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
             radio.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
             book.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+            itemSelectedInfo = MusicSelection;
+            itemSelectedDetail1 = MusicSelectionDetail1;
+            itemSelectedDetail2 = MusicSelectionDetail2;
+            displaySelected();
         }
 
         if (mediaTag == 3) {
             radio.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
             music.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
             book.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+            itemSelectedInfo = RadioSelection;
+            itemSelectedDetail1 = RadioSelectionDetail1;
+            itemSelectedDetail2 = RadioSelectionDetail2;
+            displaySelected();
         }
     }
 

@@ -79,9 +79,9 @@ public class MusicActivity extends AppCompatActivity {
                 Log.i("viewthatisselected", view.toString());
 
                 MainActivity.mediaTag = 2;
-                MainActivity.itemSelectedInfo = getString(R.string.song_info);
-                MainActivity.itemSelectedDetail1 = wordsArrayList.get(position-1).getTitleAndArtist();
-                MainActivity.itemSelectedDetail2 = wordsArrayList.get(position-1).getLength();
+                MainActivity.MusicSelection = getString(R.string.song_info);
+                MainActivity.MusicSelectionDetail1 = wordsArrayList.get(position-1).getTitleAndArtist();
+                MainActivity.MusicSelectionDetail2 = wordsArrayList.get(position-1).getLength();
 
 //                SharedPreferences sharedPref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 //                SharedPreferences.Editor editor = sharedPref.edit();
@@ -98,7 +98,7 @@ public class MusicActivity extends AppCompatActivity {
 //                editor.commit();
 
                 // Remember to remove
-                Log.i("MusicActivityClick",   MainActivity.itemSelectedInfo + " " + MainActivity.itemSelectedDetail1  + " " + MainActivity.itemSelectedDetail2);
+                Log.i("MusicActivityClick",   MainActivity.MusicSelection + " " + MainActivity.MusicSelectionDetail1  + " " + MainActivity.MusicSelectionDetail2);
            }
         });
 

@@ -106,7 +106,13 @@
     <string name="saved_item_selected_info">ITEM_SELECTED_INFO</string>
     <string name="saved_item_selected_detail_1">ITEM_SELECTED_DETAIL_1</string>
     <string name="saved_item_selected_detail_2">ITEM_SELECTED_DETAIL_2</string>
-    <string name="saved_book_selection">REMEMBER_BOOK_SELECTION</string>
-    <string name="saved_music_selection">REMEMBER_MUSIC_SELECTION</string>
-    <string name="saved_radio_selection">REMEMBER_RADIO_SELECTION</string>
+    <string name="saved_book_selection">BOOK_SELECTION</string>
+    <string name="saved_music_selection">MUSIC_SELECTION</string>
+    <string name="saved_radio_selection">RADIO_SELECTION</string>
+    <string name="saved_book_selection_detail_1">BOOK_SELECTION_DETAIL_1</string>
+    <string name="saved_music_selection_detail_1">MUSIC_SELECTION_DETAIL_1</string>
+    <string name="saved_radio_selection_detail_1">RADIO_SELECTION_DETAIL_1</string>
+    <string name="saved_book_selection_detail_2">BOOK_SELECTION_DETAIL_2</string>
+    <string name="saved_music_selection_detail_2">MUSIC_SELECTION_DETAIL_2</string>
+    <string name="saved_radio_selection_detail_2">RADIO_SELECTION_DETAIL_2</string>
 </resources>

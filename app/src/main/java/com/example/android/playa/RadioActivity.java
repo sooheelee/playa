@@ -42,12 +42,12 @@ public class RadioActivity extends AppCompatActivity {
                 view.setSelected(true);
 
                 MainActivity.mediaTag = 3;
-                MainActivity.itemSelectedInfo= wordsArrayList.get(position-1).getTitle();
-                MainActivity.itemSelectedDetail1 = wordsArrayList.get(position-1).getByLine();
-                MainActivity.itemSelectedDetail2 = wordsArrayList.get(position-1).getLength();
+                MainActivity.RadioSelection= wordsArrayList.get(position-1).getTitle();
+                MainActivity.RadioSelectionDetail1 = wordsArrayList.get(position-1).getByLine();
+                MainActivity.RadioSelectionDetail2 = wordsArrayList.get(position-1).getLength();
 
                 // Remember to remove
-                Log.i("RadioActivity",   MainActivity.itemSelectedInfo + " " + MainActivity.itemSelectedDetail1  + " " + MainActivity.itemSelectedDetail2);
+                Log.i("RadioActivity",   MainActivity.RadioSelection + " " + MainActivity.RadioSelectionDetail1  + " " + MainActivity.RadioSelectionDetail2);
 //                startActivity(new Intent(RadioActivity.this, MainActivity.class));
             }
         });
