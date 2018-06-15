@@ -5,72 +5,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingBottom="16dp"
-    android:paddingTop="4dp"
+    android:paddingBottom="@dimen/layout_padding_8x_base"
+    android:paddingLeft="@dimen/layout_padding_8x_base"
+    android:paddingRight="@dimen/layout_padding_8x_base"
+    android:paddingTop="@dimen/layout_padding_base"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/visible_if_no_media_selection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="First time here" />
+        android:layout_margin="@dimen/layout_padding_base"
+        android:textSize="@dimen/text_size_sm"
+        tools:text="First time here message" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="@dimen/layout_0_dp"
+        android:layout_weight="@integer/layout_weight_base"
+        android:paddingBottom="@dimen/layout_padding_8x_base"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/book"
-            android:layout_width="0dp"
+            style="@android:style/Widget.Holo.Button.Borderless"
+            android:layout_width="@dimen/layout_0_dp"
             android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
+            android:layout_margin="@dimen/layout_padding_base"
+            android:layout_weight="@integer/layout_weight_base"
             android:background="@android:color/holo_orange_light"
-            android:text="audio book"
+            android:text="@string/button_book"
             android:textColor="@android:color/white"
-            android:textSize="24sp" />
+            android:textSize="@dimen/text_size_lg" />
 
         <Button
             android:id="@+id/music"
-            android:layout_width="0dp"
+            style="@android:style/Widget.Holo.Button.Borderless"
+            android:layout_width="@dimen/layout_0_dp"
             android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
+            android:layout_margin="@dimen/layout_padding_base"
+            android:layout_weight="@integer/layout_weight_base"
             android:background="@android:color/holo_orange_dark"
-            android:text="music"
+            android:text="@string/button_music"
             android:textColor="@android:color/white"
-            android:textSize="24sp" />
+            android:textSize="@dimen/text_size_lg" />
 
         <Button
             android:id="@+id/radio"
-            android:layout_width="0dp"
+            style="@android:style/Widget.Holo.Button.Borderless"
+            android:layout_width="@dimen/layout_0_dp"
             android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
+            android:layout_margin="@dimen/layout_padding_base"
+            android:layout_weight="@integer/layout_weight_base"
             android:background="@android:color/holo_orange_light"
-            android:text="live radio"
+            android:text="@string/button_radio"
             android:textColor="@android:color/white"
-            android:textSize="24sp" />
+            android:textSize="@dimen/text_size_lg" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="2dp"
-        android:layout_weight="2"
+        android:layout_height="@dimen/layout_0_dp"
+        android:layout_margin="@dimen/layout_padding_base"
+        android:layout_weight="@integer/layout_weight_base"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/device_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            tools:text="Bluetooth devices"
-            android:textSize="16sp" />
+            android:layout_marginTop="@dimen/layout_padding_base"
+            android:textSize="@dimen/text_size_md"
+            tools:text="Bluetooth devices" />
 
         <ListView
             android:id="@+id/bluetooth"
@@ -81,79 +87,89 @@
     <RelativeLayout
         android:id="@+id/player"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="2dp"
-        android:layout_weight="2"
+        android:layout_height="@dimen/layout_0_dp"
+        android:layout_margin="@dimen/layout_padding_base"
+        android:layout_weight="@integer/layout_weight_2xbase"
         android:background="@android:color/transparent">
 
         <LinearLayout
-            android:id="@+id/now_playing_field"
+            android:id="@+id/now_player_header_time"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_padding_4x_base"
+            android:layout_marginBottom="@dimen/layout_padding_2x_base">
 
             <TextView
                 android:id="@+id/now_playing_header"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/layout_0_dp"
                 android:layout_height="wrap_content"
-                android:text="Now playing:  "
-                android:textSize="16sp" />
+                android:layout_weight="@integer/layout_weight_7xbase"
+                android:layout_marginBottom="@dimen/layout_padding_2x_base"
+                android:text="@string/now_playing"
+                android:textSize="@dimen/text_size_md" />
 
             <TextView
-                android:id="@+id/now_playing_info"
-                android:layout_width="wrap_content"
+                android:id="@+id/now_playing_detail2"
+                android:layout_width="@dimen/layout_0_dp"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fadingEdge="horizontal"
-                android:marqueeRepeatLimit="1"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="Rabbit Songs" />
-
+                android:layout_marginRight="@dimen/layout_padding_2x_base"
+                android:layout_marginEnd="@dimen/layout_padding_2x_base"
+                android:layout_weight="@integer/layout_weight_base"
+                android:gravity="end"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="bottom"
+                android:textAlignment="viewEnd"
+                tools:text="3:33" />
         </LinearLayout>
 
         <SeekBar
             android:id="@+id/seekBar2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/now_playing_field"
+            android:layout_below="@id/now_player_header_time"
+            android:layout_marginBottom="@dimen/layout_padding_2x_base"
             android:visibility="visible" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/now_playing_detail1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/seekBar2">
+            android:layout_below="@id/seekBar2"
+            android:ellipsize="end"
+            android:fadingEdge="horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textSize="@dimen/text_size_lg"
+            android:textColor="@color/colorBlack"
+            tools:text="Mountain Rabbit by Brie" />
 
-            <TextView
-                android:id="@+id/now_playing_detail1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:ellipsize="end"
-                android:fadingEdge="horizontal"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="Mountain Rabbit by Brie" />
-
-            <TextView
-                android:id="@+id/now_playing_detail2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/now_playing_detail1"
-                android:layout_weight="1"
-                android:text="3:33"
-                android:textAlignment="viewEnd" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/now_playing_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/now_playing_detail1"
+            android:ellipsize="end"
+            android:fadingEdge="horizontal"
+            android:marqueeRepeatLimit="1"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textSize="@dimen/text_size_lg"
+            android:textColor="@color/colorBlack"
+            tools:text="Rabbit Songs" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatingActionButtonPrevious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="8dp"
-            android:layout_marginStart="40dp"
+            android:layout_margin="@dimen/layout_padding_4x_base"
+            android:layout_marginLeft="@dimen/layout_padding_20x_base"
+            android:layout_marginStart="@dimen/layout_padding_20x_base"
             android:clickable="true"
+            android:focusable="true"
             app:backgroundTint="@android:color/holo_orange_light"
             app:srcCompat="@android:drawable/ic_media_previous" />
 
@@ -163,8 +179,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/layout_padding_4x_base"
             android:clickable="true"
+            android:focusable="true"
             app:backgroundTint="@android:color/holo_orange_dark"
             app:srcCompat="@android:drawable/ic_media_pause" />
 
@@ -174,11 +191,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="8dp"
-            android:layout_marginEnd="46dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/layout_padding_4x_base"
+            android:layout_marginEnd="@dimen/layout_padding_20x_base"
+            android:layout_marginRight="@dimen/layout_padding_20x_base"
             android:clickable="true"
+            android:focusable="true"
             app:backgroundTint="@android:color/holo_orange_light"
-            app:srcCompat="@android:drawable/ic_media_next" />
+            app:srcCompat="@android:drawable/ic_media_next"
+            tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>
 

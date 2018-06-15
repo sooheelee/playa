@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">PlaYa</string>
+    <string name="bluetooth_restart">For bluetooth functions, turn bluetooth on and restart app.</string>
+    <string name="bluetooth_on">Bluetooth known devices:</string>
+    <string name="button_book">audio book</string>
+    <string name="button_music">music</string>
+    <string name="button_radio">live radio</string>
+    <string name="now_playing">Now playing:</string>
     <string name="song_info">The Saint: Music From The Motion Picture Soundtrack</string>
     <string name="song_01_title">The Saint Theme</string>
     <string name="song_02_title">6 Underground (Nellee Hooper Edit)</string>
@@ -43,7 +49,7 @@
     <string name="song_12_length">6:08</string>
     <string name="song_13_length">5:04</string>
     <string name="song_14_length">4:17</string>
-    <string name="book_info">Ghost in the Wires Part 1: My Adventures as the World’s Most Wanted Hacker ... by Kevin Mitnick, William L. Simon ... 7h 8m Narrated by Ray Porter </string>
+    <string name="book_info">Ghost in the Wires Part 1: My Adventures as the World’s Most Wanted Hacker written by Kevin Mitnick and William L. Simon and narrated by Ray Porter</string>
     <string name="book_01_title">Chapter 1</string>
     <string name="book_02_title">Chapter 2</string>
     <string name="book_03_title">Chapter 3</string>
@@ -93,15 +99,14 @@
     <string name="book_22_length">17:35</string>
     <string name="book_23_length">24:02</string>
     <string name="book_24_length">00:20</string>
-    <string name="radio_info">Boston Massachusetts ... Public Radio</string>
-    <string name="radio_01_title">WBUR Boston\'s NPR New Station</string>
+    <string name="radio_info">Public Radio Stations, Boston MA</string>
+    <string name="radio_01_title">WBUR Boston\'s NPR News Station</string>
     <string name="radio_02_title">WGBH Boston\'s Local NPR</string>
-    <string name="radio_01_artist">College - Boston University</string>
+    <string name="radio_01_artist">Boston University</string>
     <string name="radio_02_artist">Public Radio</string>
     <string name="radio_01_length">90.9</string>
     <string name="radio_02_length">89.7</string>
-    <string name="headphones">🎧</string>
-    <string name="long_press">Long-press to open a media list</string>
+    <string name="long_press"><i>Long-press to open a media list</i></string>
     <string name="saved_media_tag">MEDIA_TAG</string>
     <string name="saved_item_selected_info">ITEM_SELECTED_INFO</string>
     <string name="saved_item_selected_detail_1">ITEM_SELECTED_DETAIL_1</string>

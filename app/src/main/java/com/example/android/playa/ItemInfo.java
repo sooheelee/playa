@@ -7,7 +7,6 @@ public class ItemInfo {
     private String mByLine;
     private String mLength;
     private Context mContext;
-    private int mTextColor;
 
     public void TextView(Context context) {
         mTitle = "";
@@ -22,13 +21,19 @@ public class ItemInfo {
         mLength = mediaLength;
     }
 
-    public void setmTextColor(int color) { mTextColor = color; }
+    public String getTitle() {
+        return mTitle;
+    }
 
-    public String getTitle() { return mTitle; }
+    public String getByLine() {
+        return mByLine;
+    }
 
-    public String getByLine() { return mByLine; }
+    public String getLength() {
+        return mLength;
+    }
 
-    public String getLength() { return mLength; }
-
-    public String getTitleAndArtist() { return mTitle + " ... " + mByLine; }
+    public String getTitleAndArtist() {
+        return mTitle + " ... " + mByLine;
+    }
 }

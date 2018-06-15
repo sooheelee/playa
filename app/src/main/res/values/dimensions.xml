@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="media_header_text_size">6sp</dimen>
+    <dimen name="text_size_sm">12sp</dimen>
+    <dimen name="text_size_md">16sp</dimen>
+    <dimen name="text_size_lg">24sp</dimen>
+    <dimen name="media_header_padding_left">18dp</dimen>
+    <dimen name="media_header_padding_top">12dp</dimen>
+    <dimen name="media_header_padding_right">18dp</dimen>
+    <dimen name="media_header_padding_bottom">12dp</dimen>
+    <integer name="layout_weight_base">1</integer>
+    <integer name="layout_weight_2xbase">2</integer>
+    <integer name="layout_weight_7xbase">7</integer>
+    <dimen name="layout_0_dp">0dp</dimen>
+    <dimen name="layout_padding_base">2dp</dimen>
+    <dimen name="layout_padding_2x_base">4dp</dimen>
+    <dimen name="layout_padding_4x_base">8dp</dimen>
+    <dimen name="layout_padding_8x_base">16dp</dimen>
+    <dimen name="layout_padding_7x_base">14dp</dimen>
+    <dimen name="layout_padding_20x_base">40dp</dimen>
+</resources>

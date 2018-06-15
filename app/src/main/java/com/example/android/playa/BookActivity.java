@@ -1,9 +1,7 @@
 package com.example.android.playa;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,8 +9,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class BookActivity extends AppCompatActivity{
+public class BookActivity extends AppCompatActivity {
 
+    /**
+     * Creates book activity and displays details on the audio book.
+     * Saves last selection to shared preferences.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,27 +46,34 @@ public class BookActivity extends AppCompatActivity{
         wordsArrayList.add(new ItemInfo(getString(R.string.book_23_title), getString(R.string.book_artist), getString(R.string.book_23_length)));
         wordsArrayList.add(new ItemInfo(getString(R.string.book_24_title), getString(R.string.book_artist), getString(R.string.book_24_length)));
 
-        ItemInfoAdapter adapter = new ItemInfoAdapter(this, wordsArrayList);
-        final ListView listView = (ListView) findViewById(R.id.list);
+        final ItemInfoAdapter adapter = new ItemInfoAdapter(this, wordsArrayList);
+        final ListView listView = findViewById(R.id.list);
 
         TextView headerToListView = new TextView(this);
-
         headerToListView.setText(R.string.book_info);
-        //these need to pull from a dimens file
-        headerToListView.setTextSize(16);
-        //these need conversion to dp
-        headerToListView.setPadding(36,8,16,8);
+
+        final int spToPixels = getApplicationContext().getResources().getDimensionPixelSize(R.dimen.media_header_text_size);
+        headerToListView.setTextSize(spToPixels);
+        headerToListView.setTextColor(getResources().getColor(R.color.colorWhite));
+        headerToListView.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
+
+        final int dpToPixelsLeft = getApplicationContext().getResources().getDimensionPixelSize(R.dimen.media_header_padding_left);
+        final int dpToPixelsRight = getApplicationContext().getResources().getDimensionPixelSize(R.dimen.media_header_padding_right);
+        final int dpToPixelsTop = getApplicationContext().getResources().getDimensionPixelSize(R.dimen.media_header_padding_top);
+        final int dpToPixelsBottom = getApplicationContext().getResources().getDimensionPixelSize(R.dimen.media_header_padding_bottom);
+        headerToListView.setPadding(dpToPixelsLeft, dpToPixelsTop, dpToPixelsRight, dpToPixelsBottom);
 
         listView.setAdapter(adapter);
         listView.addHeaderView(headerToListView);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setSelected(true);
                 MainActivity.mediaTag = 1;
-                MainActivity.BookSelection= wordsArrayList.get(position-1).getByLine();
-                MainActivity.BookSelectionDetail1 = wordsArrayList.get(position-1).getTitle();
-                MainActivity.BookSelectionDetail2 = wordsArrayList.get(position-1).getLength();
+                MainActivity.BookSelection = wordsArrayList.get(position - 1).getByLine();
+                MainActivity.BookSelectionDetail1 = wordsArrayList.get(position - 1).getTitle();
+                MainActivity.BookSelectionDetail2 = wordsArrayList.get(position - 1).getLength();
             }
         });
     }

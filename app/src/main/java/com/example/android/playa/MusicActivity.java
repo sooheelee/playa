@@ -11,6 +11,10 @@ import java.util.ArrayList;
 
 public class MusicActivity extends AppCompatActivity {
 
+    /**
+     * Creates music activity and displays details on the playlist, here an album.
+     * Saves last selection to shared preferences.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,22 +37,24 @@ public class MusicActivity extends AppCompatActivity {
         wordsArrayList.add(new ItemInfo(getString(R.string.song_14_title), getString(R.string.song_14_artist), getString(R.string.song_14_length)));
 
         final ItemInfoAdapter adapter = new ItemInfoAdapter(this, wordsArrayList);
-        final ListView listView = (ListView) findViewById(R.id.list);
+        final ListView listView = findViewById(R.id.list);
 
         TextView headerToListView = new TextView(this);
-
         headerToListView.setText(R.string.song_info);
-        //these need to pull from a dimens file
-        headerToListView.setTextSize(16);
-        //these need conversion to dp
-        headerToListView.setPadding(36, 8, 16, 8);
+
+        final int spToPixels = getApplicationContext().getResources().getDimensionPixelSize(R.dimen.media_header_text_size);
+        headerToListView.setTextSize(spToPixels);
+        headerToListView.setTextColor(getResources().getColor(R.color.colorWhite));
+        headerToListView.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
+
+        final int dpToPixelsLeft = getApplicationContext().getResources().getDimensionPixelSize(R.dimen.media_header_padding_left);
+        final int dpToPixelsRight = getApplicationContext().getResources().getDimensionPixelSize(R.dimen.media_header_padding_right);
+        final int dpToPixelsTop = getApplicationContext().getResources().getDimensionPixelSize(R.dimen.media_header_padding_top);
+        final int dpToPixelsBottom = getApplicationContext().getResources().getDimensionPixelSize(R.dimen.media_header_padding_bottom);
+        headerToListView.setPadding(dpToPixelsLeft,dpToPixelsTop,dpToPixelsRight,dpToPixelsBottom);
+
         listView.setAdapter(adapter);
         listView.addHeaderView(headerToListView);
-
-        // Experimental features
-//        listView.setSelectionAfterHeaderView();
-//        listView.getItemsCanFocus();
-//        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -56,8 +62,8 @@ public class MusicActivity extends AppCompatActivity {
                 view.setSelected(true);
                 MainActivity.mediaTag = 2;
                 MainActivity.MusicSelection = getString(R.string.song_info);
-                MainActivity.MusicSelectionDetail1 = wordsArrayList.get(position-1).getTitleAndArtist();
-                MainActivity.MusicSelectionDetail2 = wordsArrayList.get(position-1).getLength();
+                MainActivity.MusicSelectionDetail1 = wordsArrayList.get(position - 1).getTitleAndArtist();
+                MainActivity.MusicSelectionDetail2 = wordsArrayList.get(position - 1).getLength();
             }
         });
     }
