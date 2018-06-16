@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        colorSelectedMedia();
+        colorAndDisplaySelectedMedia();
         displaySelected();
 
         final Button book = findViewById(R.id.book);
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mediaTag = 1;
-                colorSelectedMedia();
+                colorAndDisplaySelectedMedia();
                 itemSelectedInfo = BookSelection;
                 itemSelectedDetail1 = BookSelectionDetail1;
                 itemSelectedDetail2 = BookSelectionDetail2;
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mediaTag = 2;
-                colorSelectedMedia();
+                colorAndDisplaySelectedMedia();
                 itemSelectedInfo = MusicSelection;
                 itemSelectedDetail1 = MusicSelectionDetail1;
                 itemSelectedDetail2 = MusicSelectionDetail2;
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mediaTag = 3;
-                colorSelectedMedia();
+                colorAndDisplaySelectedMedia();
                 itemSelectedInfo = RadioSelection;
                 itemSelectedDetail1 = RadioSelectionDetail1;
                 itemSelectedDetail2 = RadioSelectionDetail2;
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Lists only known, i.e. previously paired bluetooth devices that are available.
-        // Yet to wire indication of actually connected device.
+        // TODO: indicate actually connected device
         if (mBluetoothAdapter != null && mBluetoothAdapter.isEnabled()) {
             deviceList.setText(R.string.bluetooth_on);
         }
@@ -178,23 +179,19 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Highlights media button corresponding to media that is currently playing
      */
-    public void colorSelectedMedia() {
+    public void colorAndDisplaySelectedMedia() {
         final Button book = findViewById(R.id.book);
         final Button music = findViewById(R.id.music);
         final Button radio = findViewById(R.id.radio);
 
         if (mediaTag == 0) {
-            music.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
-            radio.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
-            book.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+            colorSelectedMedia(null);
             TextView selectMediaInstruction = findViewById(R.id.visible_if_no_media_selection);
             selectMediaInstruction.setText(R.string.long_press);
         }
 
         if (mediaTag == 1) {
-            book.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
-            music.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
-            radio.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+            colorSelectedMedia(book);
             itemSelectedInfo = BookSelection;
             itemSelectedDetail1 = BookSelectionDetail1;
             itemSelectedDetail2 = BookSelectionDetail2;
@@ -202,9 +199,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (mediaTag == 2) {
-            music.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
-            radio.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
-            book.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+            colorSelectedMedia(music);
             itemSelectedInfo = MusicSelection;
             itemSelectedDetail1 = MusicSelectionDetail1;
             itemSelectedDetail2 = MusicSelectionDetail2;
@@ -212,15 +207,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (mediaTag == 3) {
-            radio.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
-            music.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
-            book.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+            colorSelectedMedia(radio);
             itemSelectedInfo = RadioSelection;
             itemSelectedDetail1 = RadioSelectionDetail1;
             itemSelectedDetail2 = RadioSelectionDetail2;
             displaySelected();
         }
     }
+
+    public void colorSelectedMedia(@Nullable Button selectedButton) {
+        Button[] mediaButtonsList = {findViewById(R.id.book), findViewById(R.id.music), findViewById(R.id.radio)};
+        for (Button button : mediaButtonsList)
+            button.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+        if (selectedButton != null) {
+        selectedButton.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
+    }}
 
     /**
      * Displays last selected media item, scrolling if item description is wider than the view
@@ -263,7 +264,12 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onPausePlayButtonClick() {
         final FloatingActionButton pauseOrPlayButton = findViewById(R.id.floatingActionButtonPause);
-        pauseOrPlayButton.setTag(1);
+        if (mediaTag == 0) {
+            pauseOrPlayButton.setTag(2);
+            pauseOrPlayButton.setImageResource(android.R.drawable.ic_media_play);
+        } else {
+            pauseOrPlayButton.setTag(1);
+        }
         pauseOrPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -286,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
             displaySelected();
-            colorSelectedMedia();
+            colorAndDisplaySelectedMedia();
         } else {
             setContentView(R.layout.activity_main);
         }
